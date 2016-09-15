@@ -50,9 +50,9 @@ test {
 }
 
 githubPages {
-    repoUri = 'git@github.com:Pragmatists/concordion-rest-extension-example.git'
+    repoUri = 'git@github.com:nkoder/concordion-rest-extension-example.git'
     pages {
-        from 'build/reports/concordion'
+        from "$buildDir/reports/concordion"
     }
 }
 
@@ -60,7 +60,7 @@ task createIndex(type: Copy) {
     from('src/test/resources') {
     	include 'index.html'
     }
-    into 'build/reports/concordion/'
+    into "$buildDir/reports/concordion"
 }
 
 publishGhPages.dependsOn test
