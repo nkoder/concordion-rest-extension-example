@@ -3,20 +3,18 @@ apply plugin: 'org.ajoberstar.github-pages'
 
 buildscript {
     repositories {
-        jcenter()
         mavenCentral()
     }
     dependencies {
-        classpath 'org.ajoberstar:gradle-git:1.1.0'
+        classpath 'org.ajoberstar:gradle-git:1.5.1'
     }
 }
 ext {
-    springBootVersion = '1.1.9.RELEASE'
+    springBootVersion = '1.4.0.RELEASE'
 }
 
 repositories {
     mavenCentral()
-    mavenLocal()
 }
 
 sourceSets {
@@ -26,20 +24,21 @@ sourceSets {
 }
 
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 dependencies {
 
     compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
     compile 'commons-io:commons-io:2.4'
 
-    compile 'com.itextpdf:itextpdf:5.4.2'
-    compile 'com.itextpdf.tool:xmlworker:5.4.1'
+    compile 'com.itextpdf:itextpdf:5.5.9'
+    compile 'com.itextpdf.tool:xmlworker:5.5.9'
 
     testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
 
-    testCompile 'junit:junit:4.11'
-    testCompile "org.concordion:concordion:1.4.6"
-    testCompile "pl.pragmatists:concordion-rest-extension:0.5.1"
+    testCompile 'junit:junit:4.12'
+    testCompile "org.concordion:concordion:2.0.2"
+    testCompile "pl.pragmatists:concordion-rest-extension:0.5.4"
 }
 
 test {
