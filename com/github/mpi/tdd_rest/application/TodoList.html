@@ -43,13 +43,13 @@ li {
   margin-bottom: 6px; 
 }
 
-.example {
+.example, [c\:example] {
   padding: 6px 16px 6px 16px;
   border: 1px solid #C3D9FF;
   margin: 6px 0px 28px 0px;
   background-color: #F5F9FD;
 }
-.example h3 {
+.example h3, [c\:example] h3 {
   margin-top: 8px;
   margin-bottom: 8px;
   font-size: 12pt;
@@ -164,59 +164,79 @@ ins {
 </style><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <link type="text/css" rel="stylesheet" href="../../../../../codemirror/codemirror.css" /><link type="text/css" rel="stylesheet" href="../../../../../codemirror/merge.css" /><link type="text/css" rel="stylesheet" href="../../../../../codemirror/enable-codemirror.css" /><script type="text/javascript" src="../../../../../codemirror/codemirror.js"></script><script type="text/javascript" src="../../../../../codemirror/javascript.js"></script><script type="text/javascript" src="../../../../../codemirror/xml.js"></script><script type="text/javascript" src="../../../../../codemirror/diff_match_patch.js"></script><script type="text/javascript" src="../../../../../codemirror/merge.js"></script><script type="text/javascript" src="../../../../../codemirror/enable-codemirror.js"></script><link type="text/css" rel="stylesheet" href="../../../../../bootstrap/bootstrap.css" /><link type="text/css" rel="stylesheet" href="../../../../../bootstrap/enable-bootstrap.css" /></head><body class="container">
 
-	<h2 class="page-header">Todo List Endpoint</h2>
- 	
- 	<div class="alert alert-success" role="alert">
- 		This is a sample <a href="http://www.concordion.org">Concordion</a> specification page demonstrating features of the
- 		<a href="http://github.com/Pragmatists/concordion-rest-extension">Concordion REST</a> extension. 
- 	</div>
- 	
- 	<div>
- 		<strong>To-Do List Endpoint</strong> is a rich RESTful API that enables you to manage your day-to-day tasks. <br />
- 		Currently, following operations are supported:
- 		<ul>
- 			<li><a href="#create">Create To-Do item</a></li>
- 			<li><a href="#fetch_single">Fetch particular To-Do item</a></li>
- 			<li><a href="#complete">Complete To-Do item</a></li>
- 			<li><a href="#delete">Delete To-Do item</a></li>
- 			<li><a href="#fetch_list">Fetch entire To-Do list</a></li>
- 			<li><a href="#export_as_pdf">Export To-Do list in PDF format</a></li>
- 			<li><a href="#export_as_xml">Export To-Do list in XML format</a></li>
- 		</ul>
- 	</div>
- 	
- 	<h3>Examples: </h3>
-	<div id="create" class="panel panel-default" c:execute="clearItems()">
-		<div class="panel-heading"><b>Creating To-Do item</b></div>
-		<div class="panel-body">
-			<div r:request="">		
-				
-				When I send <code r:post="" class="post">/tasks</code> with following body
-				(using <code name="Content-Type" r:setHeader="" class="set-header">application/json</code>) 
-				<pre r:jsonBody="" class="json">{
+<h2 class="page-header">Todo List Endpoint</h2>
+
+<div class="alert alert-success" role="alert">
+    This is a sample <a href="http://www.concordion.org">Concordion</a> specification page demonstrating features of the
+    <a href="http://github.com/Pragmatists/concordion-rest-extension">Concordion REST</a> extension.
+</div>
+
+<div>
+    <strong>To-Do List Endpoint</strong> is a rich RESTful API that enables you to manage your day-to-day tasks. <br />
+    Currently, following operations are supported:
+    <ul>
+        <li><a href="#create">Create To-Do item</a></li>
+        <li><a href="#fetch_single">Fetch particular To-Do item</a></li>
+        <li><a href="#complete">Complete To-Do item</a></li>
+        <li><a href="#delete">Delete To-Do item</a></li>
+        <li><a href="#fetch_list">Fetch entire To-Do list</a></li>
+        <li><a href="#export_as_pdf">Export To-Do list in PDF format</a></li>
+        <li><a href="#export_as_xml">Export To-Do list in XML format</a></li>
+    </ul>
+</div>
+
+<h3>Examples: </h3>
+<div id="create" class="panel panel-default" c:execute="clearItems()">
+    <div class="panel-heading"><b>Creating To-Do item</b></div>
+    <div class="panel-body">
+        <div r:request="">
+
+            When I send
+            <code r:post="" class="post">/tasks</code>
+            with following body
+            (using
+            <code name="Content-Type" r:setHeader="" class="set-header">application/json</code>
+            )
+            <pre r:jsonBody="" class="json">{
   "description": "Buy the milk",
   "priority": 3
 }</pre>
-				Then I should receive <code r:status="" class="success">HTTP/1.1 201 Created</code> with response header <code name="Location" r:header="" class="header success">/tasks/1</code>		
-			</div>
-		</div>
-	</div>
-	<div id="fetch_single" class="panel panel-default" c:execute="clearItems()">
-		<div class="panel-heading"><b>Fetchnig To-Do item</b></div>
-		<div class="panel-body">
-		 	<div class="alert alert-warning well-sm" role="alert">
-		 		<strong>Warning:</strong> This example was intentionally left failing in order to demonstrate JSON comparition view feature. 
-		 	</div>
-			<div r:request="">
-				When I <span r:success="" class="success">successfully</span> send <code r:post="" class="post">/tasks</code> with following body
-				(using <code name="Content-Type" r:setHeader="" class="set-header">application/json</code>) 
-				<pre r:jsonBody="" class="json">{
+            Then I should receive
+            <code r:status="" class="failure"><del class="expected">HTTP/1.1 201 Created</del>
+<ins class="actual">HTTP/1.1 201 </ins></code>
+            with response header
+            <code name="Location" r:header="" class="header success">/tasks/1</code>
+        </div>
+    </div>
+</div>
+<div id="fetch_single" class="panel panel-default" c:execute="clearItems()">
+    <div class="panel-heading"><b>Fetchnig To-Do item</b></div>
+    <div class="panel-body">
+        <div class="alert alert-warning well-sm" role="alert">
+            <strong>Warning:</strong> This example was intentionally left failing in order to demonstrate JSON
+            comparition view feature.
+        </div>
+        <div r:request="">
+            When I
+            <span r:success="" class="success">successfully</span>
+            send
+            <code r:post="" class="post">/tasks</code>
+            with following body
+            (using
+            <code name="Content-Type" r:setHeader="" class="set-header">application/json</code>
+            )
+            <pre r:jsonBody="" class="json">{
   "description": "Walk the dog"
-}</pre>		
-			</div>
-			<div r:request="">
-				Then <code r:get="" class="get">/tasks/1</code> should return <code r:status="" class="success">HTTP/1.1 200 OK</code> with response containing:
-				<pre r:jsonResponse="" class="json rest-failure"><del class="expected">{
+}</pre>
+        </div>
+        <div r:request="">
+            Then
+            <code r:get="" class="get">/tasks/1</code>
+            should return
+            <code r:status="" class="failure"><del class="expected">HTTP/1.1 200 OK</del>
+<ins class="actual">HTTP/1.1 200 </ins></code>
+            with response containing:
+            <pre r:jsonResponse="" class="json rest-failure"><del class="expected">{
   "task_id": 1,
   "completed": false,
   "description": "Walk the dog",
@@ -228,128 +248,163 @@ ins {
   "description": "Walk the dog",
   "priority": 0
 }</ins></pre>
-			</div>
-		</div>
-	</div>
-	<div id="complete" class="panel panel-default" c:execute="clearItems()">
-		<div class="panel-heading"><b>Completing To-Do item</b></div>
-		<div class="panel-body">
-			<span c:execute="#taskID = newItem()">Given there is pending To-Do item with id <b c:echo="#taskID">1</b></span>
-			<div r:request="">
-				When I send <code r:post="" class="post">/tasks/1/complete</code> <br />
-				Then I should receive <code r:status="" class="success">HTTP/1.1 200 OK</code>
-			</div>
-			<div r:request="">
-				And <code r:get="" class="get">/tasks/1</code> should return <code r:status="" class="success">HTTP/1.1 200 OK</code> with response containing:
-				<pre r:jsonResponse="" class="json rest-success">{
+        </div>
+    </div>
+</div>
+<div id="complete" class="panel panel-default" c:execute="clearItems()">
+    <div class="panel-heading"><b>Completing To-Do item</b></div>
+    <div class="panel-body">
+        <span c:execute="#taskID = newItem()">Given there is pending To-Do item with id <b c:echo="#taskID">1</b></span>
+        <div r:request="">
+            When I send
+            <code r:post="" class="post">/tasks/1/complete</code>
+            <br />
+            Then I should receive
+            <code r:status="" class="failure"><del class="expected">HTTP/1.1 200 OK</del>
+<ins class="actual">HTTP/1.1 200 </ins></code>
+        </div>
+        <div r:request="">
+            And
+            <code r:get="" class="get">/tasks/1</code>
+            should return
+            <code r:status="" class="failure"><del class="expected">HTTP/1.1 200 OK</del>
+<ins class="actual">HTTP/1.1 200 </ins></code>
+            with response containing:
+            <pre r:jsonResponse="" class="json rest-success">{
   "task_id": 1,
   "completed": true
 }</pre>
-			</div>
-		</div>
-	</div>
-	<div id="delete" class="panel panel-default" c:execute="clearItems()">
-		<div class="panel-heading"><b>Deleting To-Do item</b></div>
-		<div class="panel-body">
-		 	<div class="alert alert-warning well-sm" role="alert">
-		 		<strong>Warning:</strong> This example was intentionally left failing in order to demonstrate HTTP status comparition feature. 
-		 	</div>
-			<span c:execute="#taskID = newItem()">Given there is To-Do item with id <b c:echo="#taskID">1</b></span>
-			<div r:request="">
-				When I send <code r:delete="" class="delete">/tasks/1</code> <br />
-				Then I should receive <code r:status="" class="failure"><del class="expected">HTTP/1.1 200 OK</del>
-<ins class="actual">HTTP/1.1 204 No Content</ins></code>
-			</div>
-			<div r:request="">
-				And <code r:get="" class="get">/tasks/1</code> should return <code r:status="" class="success">HTTP/1.1 404 Not Found</code> 
-			</div>
-		</div>
-	</div>	
+        </div>
+    </div>
+</div>
+<div id="delete" class="panel panel-default" c:execute="clearItems()">
+    <div class="panel-heading"><b>Deleting To-Do item</b></div>
+    <div class="panel-body">
+        <div class="alert alert-warning well-sm" role="alert">
+            <strong>Warning:</strong> This example was intentionally left failing in order to demonstrate HTTP status
+            comparition feature.
+        </div>
+        <span c:execute="#taskID = newItem()">Given there is To-Do item with id <b c:echo="#taskID">1</b></span>
+        <div r:request="">
+            When I send
+            <code r:delete="" class="delete">/tasks/1</code>
+            <br />
+            Then I should receive
+            <code r:status="" class="failure"><del class="expected">HTTP/1.1 200 OK</del>
+<ins class="actual">HTTP/1.1 204 </ins></code>
+        </div>
+        <div r:request="">
+            And
+            <code r:get="" class="get">/tasks/1</code>
+            should return
+            <code r:status="" class="failure"><del class="expected">HTTP/1.1 404 Not Found</del>
+<ins class="actual">HTTP/1.1 404 </ins></code>
+        </div>
+    </div>
+</div>
 
-	<div c:execute="clearItems()">
-		Given there are following tasks:
-		<table class="table" c:execute="#taskID = newItem(#description, #priority, #completed)">
-			<thead>
-				<tr>
-					<th c:echo="#taskID">TaskID</th>
-					<th c:set="#description">Description</th>
-					<th c:set="#priority">Priority</th>
-					<th c:set="#completed">Completed</th>
-				</tr>
-			</thead>
-			<tr>
-				<td>1</td>
-				<td>Buy the milk</td>
-				<td>1</td>
-				<td>Y</td>
-			</tr>
-			<tr>
-				<td>2</td>
-				<td>Walk the dog</td>
-				<td>3</td>
-				<td>N</td>
-			</tr>
-			<tr>
-				<td>3</td>
-				<td>Visit the gym</td>
-				<td>2</td>
-				<td>N</td>
-			</tr>
-		</table>
-	</div>
-	<div id="fetch_list" class="panel panel-default">
-		<div class="panel-heading"><b>Listing To-Do items as JSON (default)</b></div>
-		<div class="panel-body">
-			<div r:request="">
-				When I send <code r:get="" class="get">/tasks</code> <br />
-				Then I should receive <code r:status="" class="success">HTTP/1.1 200 OK</code> with response containing:
-				<pre r:jsonResponse="" class="json rest-success">{
-  "tasks": [
-    {
-      "task_id": 1,
-      "description": "Buy the milk",
-      "priority": 1,
-      "completed": true
-    },
-    {
-      "task_id": 2,
-      "description": "Walk the dog",
-      "priority": 3,
-      "completed": false
-    },
-    {
-      "task_id": 3,
-      "description": "Visit the gym",
-      "priority": 2,
-      "completed": false
-    }
-  ]
-}</pre> 
-			</div>
-		</div>
-	</div>	
-	<div id="export_as_pdf" class="panel panel-default">
-		<div class="panel-heading"><b>Listing To-Do items as PDF</b></div>
-		<div class="panel-body">
-			<div r:request="">
-				When I send <code r:get="" class="get">/tasks</code> with <code name="Accept" r:setHeader="" class="set-header">application/pdf</code><br />
-				Then I should receive <code r:attachment="" class="success"><a href="todo-list.pdf">todo-list.pdf</a></code> 
-				with <code name="Content-Type" r:header="" class="header success">application/pdf</code> and header <code name="Content-Disposition" r:header="" class="header success">attachment; filename=todo-list.pdf</code>
-			</div>
-		</div>
-	</div>	
-	<div id="export_as_xml" class="panel panel-default">
-		<div class="panel-heading"><b>Listing To-Do items as XML</b></div>
-		<div class="panel-body">
-		 	<div class="alert alert-warning well-sm" role="alert">
-		 		<strong>Warning:</strong> This example was intentionally left failing in order to demonstrate HTTP header comparition feature. 
-		 	</div>
-			<div r:request="">
-				When I send <code r:get="" class="get">/tasks</code> with <code name="Accept" r:setHeader="" class="set-header">application/xml</code><br />
-				Then I should receive <code r:status="" class="success">HTTP/1.1 200 OK</code> with <code name="Content-Type" r:header="" class="header failure"><del class="expected">application/xml</del>
-<ins class="actual">(not set)</ins></code> 
-				and response body containing:
-				<pre r:xmlResponse="" class="xml rest-success">&lt;todo-list&gt;&#x0D;
+<div c:execute="clearItems()">
+    Given there are following tasks:
+    <table class="table" c:execute="#taskID = newItem(#description, #priority, #completed)">
+        <thead>
+        <tr>
+            <th c:echo="#taskID">TaskID</th>
+            <th c:set="#description">Description</th>
+            <th c:set="#priority">Priority</th>
+            <th c:set="#completed">Completed</th>
+        </tr>
+        </thead>
+        <tr>
+            <td>1</td>
+            <td>Buy the milk</td>
+            <td>1</td>
+            <td>Y</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Walk the dog</td>
+            <td>3</td>
+            <td>N</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Visit the gym</td>
+            <td>2</td>
+            <td>N</td>
+        </tr>
+    </table>
+</div>
+<div id="fetch_list" class="panel panel-default">
+    <div class="panel-heading"><b>Listing To-Do items as JSON (default)</b></div>
+    <div class="panel-body">
+        <div r:request="">
+            When I send
+            <code r:get="" class="get">/tasks</code>
+            <br />
+            Then I should receive
+            <code r:status="" class="failure"><del class="expected">HTTP/1.1 200 OK</del>
+<ins class="actual">HTTP/1.1 200 </ins></code>
+            with response containing:
+            <pre r:jsonResponse="" class="json rest-success">{
+  "tasks": [{
+    "task_id": 1,
+    "description": "Buy the milk",
+    "priority": 1,
+    "completed": true
+  }, {
+    "task_id": 2,
+    "description": "Walk the dog",
+    "priority": 3,
+    "completed": false
+  }, {
+    "task_id": 3,
+    "description": "Visit the gym",
+    "priority": 2,
+    "completed": false
+  }]
+}</pre>
+        </div>
+    </div>
+</div>
+<div id="export_as_pdf" class="panel panel-default">
+    <div class="panel-heading"><b>Listing To-Do items as PDF</b></div>
+    <div class="panel-body">
+        <div r:request="">
+            When I send
+            <code r:get="" class="get">/tasks</code>
+            with
+            <code name="Accept" r:setHeader="" class="set-header">application/pdf</code>
+            <br />
+            Then I should receive
+            <code r:attachment="" class="success"><a href="todo-list.pdf">todo-list.pdf</a></code>
+            with
+            <code name="Content-Type" r:header="" class="header success">application/pdf</code>
+            and header
+            <code name="Content-Disposition" r:header="" class="header success">attachment; filename=todo-list.pdf</code>
+        </div>
+    </div>
+</div>
+<div id="export_as_xml" class="panel panel-default">
+    <div class="panel-heading"><b>Listing To-Do items as XML</b></div>
+    <div class="panel-body">
+        <div class="alert alert-warning well-sm" role="alert">
+            <strong>Warning:</strong> This example was intentionally left failing in order to demonstrate HTTP header
+            comparition feature.
+        </div>
+        <div r:request="">
+            When I send
+            <code r:get="" class="get">/tasks</code>
+            with
+            <code name="Accept" r:setHeader="" class="set-header">application/xml</code>
+            <br />
+            Then I should receive
+            <code r:status="" class="failure"><del class="expected">HTTP/1.1 200 OK</del>
+<ins class="actual">HTTP/1.1 200 </ins></code>
+            with
+            <code name="Content-Type" r:header="" class="header failure"><del class="expected">application/xml</del>
+<ins class="actual">(not set)</ins></code>
+            and response body containing:
+            <pre r:xmlResponse="" class="xml rest-success">&lt;todo-list&gt;&#x0D;
     &lt;todo-item task-id="1" completed="true"&gt;&#x0D;
         &lt;priority&gt;1&lt;/priority&gt;&#x0D;
         &lt;description&gt;Buy the milk&lt;/description&gt;&#x0D;
@@ -363,9 +418,9 @@ ins {
         &lt;description&gt;Visit the gym&lt;/description&gt;&#x0D;
     &lt;/todo-item&gt;&#x0D;
 &lt;/todo-list&gt;&#x0D;
-</pre> 
-			</div>
-		</div>
-	</div>	
-<div class="footer">Results generated by <a href="http://www.concordion.org" style="font-weight: bold; text-decoration: none; color: #89C;">Concordion</a><div class="testTime">in 1510 ms on 15-wrz-2016 at 21:24:23 CEST</div></div></body>
+</pre>
+        </div>
+    </div>
+</div>
+<div class="footer">Results generated by <a href="http://www.concordion.org" style="font-weight: bold; text-decoration: none; color: #89C;">Concordion</a><div class="testTime">in 2061 ms on 15-wrz-2016 at 21:50:39 CEST</div></div></body>
 </html>
