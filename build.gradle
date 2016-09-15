@@ -47,6 +47,8 @@ test {
     description = "Run Concordion"
     systemProperty 'concordion.output.dir', "$reporting.baseDir/concordion"
     ignoreFailures = true
+    testLogging.showStandardStreams = true
+    outputs.upToDateWhen { false }
 }
 
 githubPages {
